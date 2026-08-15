@@ -103,3 +103,15 @@ append multiple videos onto one running page.
 - This is a per-request workflow run by a live Claude Code session, not a
   standalone installable app — no API keys to manage, but it requires an
   active session to invoke it.
+- **Network policy**: some sessions/environments have a restrictive egress
+  policy that blocks `WebFetch` to arbitrary domains (including
+  `youtube.com`, `video.google.com`, and even sites like Wikipedia), while
+  `WebSearch` still works. If step 2 or step 4 gets an `EGRESS_BLOCKED` (or
+  similar) error from WebFetch, do not silently give up or fabricate a
+  transcript/fact-check from guesswork: tell the user plainly that this
+  session's network policy is blocking direct fetches to the domain in
+  question, note that `WebSearch` results may still be usable for
+  fact-checking (they come back as summarized snippets even when WebFetch
+  is blocked), and suggest running this skill from a session/environment
+  whose egress policy allows reaching general web domains if a full
+  transcript is required.
