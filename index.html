@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как образовался Урал</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;800&family=Russo+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sw-yellow:#ffe81f;
+  --sw-blue:#4bd5ee;
+  --sw-green:#5dff7a;
+  --sw-red:#ff3b3b;
+  --space:#000;
+  --panel:rgba(6,12,24,.82);
+  --text:#d6e4f0;
+  --head:"Russo One","Exo 2",Impact,sans-serif;
+  --body:"Exo 2",-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;color:var(--text);font-family:var(--body);min-height:100vh;
+  background:
+    radial-gradient(1px 1px at 20px 30px,#fff,transparent),
+    radial-gradient(1px 1px at 90px 120px,#fff9,transparent),
+    radial-gradient(1.5px 1.5px at 160px 70px,#fff,transparent),
+    radial-gradient(1px 1px at 230px 190px,#fffc,transparent),
+    radial-gradient(1px 1px at 310px 40px,#fff8,transparent),
+    radial-gradient(1.5px 1.5px at 60px 220px,#fff,transparent),
+    var(--space);
+  background-size:340px 260px;
+  background-attachment:fixed;
+}
+.app{max-width:1100px;margin:auto;padding:20px}
+.intro{
+  text-align:center;color:var(--sw-blue);font-size:clamp(14px,2.4vw,19px);
+  margin:18px 0 6px;letter-spacing:.5px;
+}
+h1{
+  font-family:var(--head);font-weight:400;text-align:center;text-transform:uppercase;
+  font-size:clamp(26px,6vw,54px);margin:8px 0 6px;letter-spacing:.04em;line-height:1.1;
+  color:var(--sw-yellow);
+  text-shadow:0 0 14px rgba(255,232,31,.35);
+}
+.subtitle{
+  text-align:center;color:#8aa0b8;margin-bottom:24px;text-transform:uppercase;
+  letter-spacing:.22em;font-size:clamp(11px,2vw,14px);
+}
+.scene{
+  position:relative;height:min(62vw,520px);min-height:360px;overflow:hidden;border-radius:6px;
+  border:1px solid rgba(75,213,238,.45);
+  background:
+    radial-gradient(1px 1px at 12% 14%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 38% 8%,#fff,transparent),
+    radial-gradient(1px 1px at 63% 20%,#fffc,transparent),
+    radial-gradient(1px 1px at 82% 11%,#fff,transparent),
+    radial-gradient(1.5px 1.5px at 92% 30%,#fff9,transparent),
+    radial-gradient(1px 1px at 25% 34%,#fff8,transparent),
+    linear-gradient(#030a1c 0 56%,#2a1a0f 56% 100%);
+  box-shadow:0 0 0 1px #000,0 0 28px rgba(75,213,238,.25),inset 0 0 60px rgba(0,0,0,.6);
+}
+/* hologram scan lines */
+.scene::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(75,213,238,.05) 0 1px,transparent 1px 3px);
+}
+.ocean-label{
+  position:absolute;top:58px;left:50%;transform:translateX(-50%);
+  font-family:var(--head);font-size:clamp(14px,2.6vw,24px);color:var(--sw-blue);
+  opacity:.85;transition:opacity .6s;letter-spacing:.15em;white-space:nowrap;
+  text-shadow:0 0 10px rgba(75,213,238,.7);
+}
+.plate{
+  position:absolute;bottom:0;width:35%;height:44%;
+  background:linear-gradient(#8a6a44,#3a2a1a);
+  border-top:6px solid #c89a5e;
+  transition:all 1.2s cubic-bezier(.4,0,.2,1);
+}
+.europe{left:-3%;clip-path:polygon(0 15%,35% 0,70% 12%,100% 5%,100% 100%,0 100%)}
+.siberia{right:-3%;clip-path:polygon(0 8%,35% 15%,70% 0,100% 12%,100% 100%,0 100%)}
+.plate-label{
+  position:absolute;bottom:18%;font-family:var(--head);font-size:clamp(11px,2.1vw,19px);
+  color:var(--sw-yellow);text-shadow:0 2px 6px #000;letter-spacing:.05em;
+}
+.europe .plate-label{left:15%}
+.siberia .plate-label{right:12%}
+.ocean-floor{
+  position:absolute;left:30%;right:30%;bottom:0;height:13%;background:#241a12;
+  clip-path:polygon(0 35%,15% 15%,30% 45%,50% 20%,70% 50%,85% 25%,100% 40%,100% 100%,0 100%);
+}
+/* ocean glow between the blocks */
+.glow{
+  position:absolute;left:28%;right:28%;bottom:0;height:46%;
+  background:linear-gradient(transparent,rgba(75,213,238,.28));
+  transition:opacity 1.2s;
+}
+.mountains{
+  position:absolute;left:39%;right:39%;bottom:0;height:0;transition:height 1.2s ease;background:#5a4a3a;
+  clip-path:polygon(0 100%,12% 55%,20% 75%,32% 25%,43% 68%,55% 12%,65% 55%,76% 30%,90% 70%,100% 45%,100% 100%);
+}
+.mountain-snow{
+  position:absolute;left:48%;right:48%;bottom:0;height:0;transition:height 1.2s ease;background:#e8f1f8;
+  clip-path:polygon(0 100%,50% 0,100% 100%);
+}
+/* lightsaber arrows */
+.arrow{
+  position:absolute;top:50%;height:8px;width:17%;border-radius:8px;
+  transition:all 1.2s ease;
+}
+.arrow::before{
+  content:"";position:absolute;inset:0;border-radius:8px;
+  background:linear-gradient(#fff,#fff);
+  box-shadow:0 0 6px 2px var(--c),0 0 18px 6px var(--c),0 0 36px 10px var(--c);
+}
+.arrow::after{ /* hilt */
+  content:"";position:absolute;top:-4px;bottom:-4px;width:14%;border-radius:2px;
+  background:linear-gradient(#777,#ccc,#777);
+}
+.arrow-left{left:6%;--c:var(--sw-blue)}
+.arrow-left::after{left:0}
+.arrow-right{right:6%;--c:var(--sw-red)}
+.arrow-right::after{right:0}
+.scene.closing .arrow-left{left:20%}
+.scene.closing .arrow-right{right:20%}
+.time{
+  position:absolute;top:14px;right:16px;padding:7px 12px;border-radius:3px;z-index:2;
+  background:rgba(0,0,0,.6);border:1px solid var(--sw-yellow);color:var(--sw-yellow);
+  font-family:var(--head);font-size:clamp(11px,2vw,15px);letter-spacing:.05em;
+}
+.info{
+  margin-top:18px;padding:22px;border-radius:4px;background:var(--panel);
+  border:1px solid rgba(75,213,238,.4);border-left:4px solid var(--sw-yellow);
+  box-shadow:0 0 20px rgba(75,213,238,.12);
+}
+.info h2{
+  margin:0 0 10px;font-family:var(--head);font-weight:400;font-size:clamp(18px,3.4vw,26px);
+  color:var(--sw-yellow);text-transform:uppercase;letter-spacing:.05em;
+}
+.info p{margin:0;color:var(--text);line-height:1.65}
+.controls{display:flex;justify-content:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+button{
+  font-family:var(--head);font-size:15px;letter-spacing:.06em;text-transform:uppercase;
+  background:transparent;color:var(--sw-yellow);cursor:pointer;
+  border:2px solid var(--sw-yellow);border-radius:3px;padding:12px 20px;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+button:hover,button:focus-visible{
+  background:var(--sw-yellow);color:#000;box-shadow:0 0 18px rgba(255,232,31,.55);outline:none;
+}
+button.secondary{color:var(--sw-blue);border-color:var(--sw-blue)}
+button.secondary:hover,button.secondary:focus-visible{
+  background:var(--sw-blue);color:#000;box-shadow:0 0 18px rgba(75,213,238,.55);
+}
+button:active{transform:scale(.97)}
+/* lightsaber progress */
+.progress{display:flex;gap:8px;margin-top:20px}
+.progress span{
+  height:6px;flex:1;border-radius:6px;background:#17202e;transition:all .4s;
+}
+.progress span.active{
+  background:#fff;
+  box-shadow:0 0 5px 1px var(--sw-green),0 0 14px 3px var(--sw-green);
+}
+.modern .plate{height:46%}
+.modern .europe{left:0}
+.modern .siberia{right:0}
+.modern .mountains{height:24%}
+.modern .mountain-snow{height:17%}
+.modern .glow{opacity:0}
+/* opening crawl */
+.crawl-wrap{
+  margin-top:26px;height:280px;overflow:hidden;position:relative;border-radius:4px;
+  background:#000;border:1px solid #222;perspective:380px;
+}
+.crawl-wrap::before{ /* fade at the far end */
+  content:"";position:absolute;inset:0 0 auto 0;height:45%;z-index:2;pointer-events:none;
+  background:linear-gradient(#000 10%,transparent);
+}
+.crawl{
+  position:absolute;left:12%;right:12%;top:100%;color:var(--sw-yellow);text-align:justify;
+  font-weight:800;font-size:clamp(16px,3vw,24px);line-height:1.5;
+  transform-origin:50% 100%;transform:rotateX(26deg);
+  animation:crawl 28s linear infinite;
+}
+.crawl h3{font-family:var(--head);font-weight:400;text-align:center;margin:0 0 .6em;text-transform:uppercase}
+.crawl p{margin:0 0 1em}
+@keyframes crawl{from{top:100%}to{top:-120%}}
+@media (prefers-reduced-motion:reduce){
+  .crawl{animation:none;position:static;transform:none;padding:16px}
+  .crawl-wrap{height:auto;perspective:none}
+  .crawl-wrap::before{display:none}
+  .scene *{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="intro">Давным-давно, 450 миллионов лет назад, на этой планете...</div>
+<h1>Как образовались Уральские горы?</h1>
+<div class="subtitle">Эпизод I: Интерактивная геологическая история Земли</div>
+
+<div id="scene" class="scene">
+<div id="time" class="time">≈ 450 млн лет назад</div>
+<div class="ocean-label" id="oceanLabel">ДРЕВНИЙ ОКЕАН</div>
+<div class="glow"></div>
+<div class="plate europe"><div class="plate-label">Европейский блок</div></div>
+<div class="plate siberia"><div class="plate-label">Сибирский блок</div></div>
+<div class="ocean-floor"></div>
+<div class="arrow arrow-left" id="arrowLeft"></div>
+<div class="arrow arrow-right" id="arrowRight"></div>
+<div class="mountains"></div><div class="mountain-snow"></div>
+</div>
+
+<div class="progress" id="progress"><span></span><span></span><span></span><span></span><span></span></div>
+
+<div class="info">
+<h2 id="title">Древний океан</h2>
+<p id="description">Около 450 млн лет назад на месте современного Урала находился древний океан. Между континентальными блоками существовали океаническая кора, островные дуги и вулканические системы.</p>
+</div>
+
+<div class="controls">
+<button class="secondary" onclick="previousStep()">← Назад</button>
+<button onclick="nextStep()">Далее →</button>
+<button class="secondary" onclick="autoPlay()">▶ Автоматически</button>
+</div>
+
+<div class="crawl-wrap" aria-label="Главная идея">
+<div class="crawl">
+<h3>Главная идея</h3>
+<p>Уральские горы не возникли мгновенно. Их история началась с древнего океана, продолжилась столкновением континентальных блоков и завершилась сотнями миллионов лет выветривания и эрозии.</p>
+</div>
+</div>
+</div>
+
+<script>
+const steps=[
+{time:"≈ 450 млн лет назад",title:"Древний океан",text:"На месте современного Урала существовал древний океан. Между континентальными блоками находились океаническая кора, островные дуги и вулканические системы."},
+{time:"≈ 400 млн лет назад",title:"Океан начинает закрываться",text:"Континентальные блоки начинают сближаться. Океаническая кора погружается в мантию. Возникают вулканизм, землетрясения и интенсивная тектоническая активность."},
+{time:"≈ 320 млн лет назад",title:"Столкновение континентов",text:"Океан постепенно закрывается. Континентальные массивы сталкиваются, а земная кора сжимается, складывается и надвигается друг на друга."},
+{time:"≈ 280 млн лет назад",title:"Формирование Уральского горного пояса",text:"В результате колоссального сжатия формируется Уральский ороген. Горная система в этот период была значительно выше и массивнее, чем современный Урал."},
+{time:"Сегодня",title:"Современный Урал",text:"За сотни миллионов лет вода, ветер, мороз и ледники разрушали горы. Сегодня мы видим сильно эродированный древний горный пояс. Полярный Урал около Воркуты является его северной частью."}
+];
+let current=0,timer=null;
+function render(){
+  const scene=document.getElementById("scene");
+  document.getElementById("time").textContent=steps[current].time;
+  document.getElementById("title").textContent=steps[current].title;
+  document.getElementById("description").textContent=steps[current].text;
+  document.getElementById("oceanLabel").style.opacity=current>=3?"0":".85";
+  document.querySelectorAll(".arrow").forEach(a=>a.style.opacity=current>=2?"0":"1");
+  scene.classList.toggle("closing",current>=1);
+  scene.classList.toggle("modern",current>=3);
+  document.querySelectorAll("#progress span").forEach((bar,i)=>bar.classList.toggle("active",i<=current));
+}
+function nextStep(){if(current<steps.length-1){current++;render()}}
+function previousStep(){if(current>0){current--;render()}}
+function autoPlay(){
+  clearInterval(timer);current=0;render();
+  timer=setInterval(()=>{if(current>=steps.length-1){clearInterval(timer);return}current++;render()},3000);
+}
+render();
+</script>
+</body>
+</html>
